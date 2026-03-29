@@ -1,7 +1,7 @@
 # AMNDA Verification Laboratory Cookbook
 
 **Resource Group:** AMNDAVerif | **Region:** eastus  
-**Based on:** paperv6 — AMNDA: Adaptive Multi-layer, lifecycle-aware Defense Architecture (Section 7)
+**Based on:** AMNDA: An adaptive multi-layer, lifecycle-aware defense architecture for multi-stage cyberattacks with Azure-based validation
 
 ---
 
