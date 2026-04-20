@@ -1,0 +1,49 @@
+ana [ ~ ]$ for PLB in PLB-S1-IdentityTighten PLB-S2-PrivilegeRestrict PLB-S3-SegmentationTighten PLB-S4-HostIsolation; do
+  echo "=== $PLB ==="
+  RUN=$(az rest --method GET \
+    --url "https://management.azure.com/subscriptions/$SUBSCRIPTION/resourceGroups/$RG/providers/Microsoft.Logic/workflows/$PLB/runs?api-version=2016-06-01&\$top=1" \
+    --query "value[0].{Status:properties.status,Start:properties.startTime,End:properties.endTime}" \
+    -o json)
+  echo "$RUN"
+  echo "$RUN" | python3 -c "
+import sys, json, re
+from datetime import datetime
+r = json.load(sys.stdin)
+if r.get('Start') and r.get('End'):
+    def parse(s):
+        s = re.sub(r'(\.\d{6})\d+Z$', r'\1Z', s)
+        return datetime.strptime(s, '%Y-%m-%dT%H:%M:%S.%fZ' if '.' in s else '%Y-%m-%dT%H:%M:%SZ')
+    print(f'  Duration: {(parse(r[\"End\"]) - parse(r[\"Start\"])).total_seconds():.1f}s')
+else:
+    print('  (no completed run found or still running)')
+"
+done
+=== PLB-S1-IdentityTighten ===
+{
+  "End": "2026-03-28T18:54:11.3109252Z",
+  "Start": "2026-03-28T18:54:08.2585614Z",
+  "Status": "Succeeded"
+}
+  Duration: 3.1s
+=== PLB-S2-PrivilegeRestrict ===
+{
+  "End": "2026-03-28T21:06:14.0088296Z",
+  "Start": "2026-03-28T21:06:12.9279307Z",
+  "Status": "Succeeded"
+}
+  Duration: 1.1s
+=== PLB-S3-SegmentationTighten ===
+{
+  "End": "2026-03-29T10:45:14.7382175Z",
+  "Start": "2026-03-29T10:45:13.7171733Z",
+  "Status": "Succeeded"
+}
+  Duration: 1.0s
+=== PLB-S4-HostIsolation ===
+{
+  "End": "2026-03-29T11:27:17.9804305Z",
+  "Start": "2026-03-29T11:27:15.1006577Z",
+  "Status": "Succeeded"
+}
+  Duration: 2.9s
+ana [ ~ ]$ 

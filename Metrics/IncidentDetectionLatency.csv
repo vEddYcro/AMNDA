@@ -1,0 +1,48 @@
+﻿Title,Severity,Status,FirstActivityTime,CreatedTime,ClosedTime,DetectionLatencySec,ContainmentLatencySec
+AMNDA-S0: Port Scanning Detection,Medium,New,29-03-26 14:55,29-03-26 15:34,Invalid date,2372,
+AMNDA-S0: Excessive Inbound Requests,Medium,New,29-03-26 15:00,29-03-26 15:09,Invalid date,580,
+AMNDA-S0: Port Scanning Detection,Medium,New,29-03-26 14:55,29-03-26 15:03,Invalid date,519,
+AMNDA-S0: Excessive Inbound Requests,Medium,New,29-03-26 14:50,29-03-26 14:59,Invalid date,571,
+AMNDA-S0: Excessive Inbound Requests,Medium,New,29-03-26 14:50,29-03-26 14:59,Invalid date,542,
+AMNDA-S3: Lateral Movement Detected,High,New,29-03-26 12:30,29-03-26 12:42,Invalid date,741,
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 21:40,28-03-26 22:04,Invalid date,1426,
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 21:40,28-03-26 21:59,Invalid date,1119,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 21:40,28-03-26 21:54,28-03-26 22:12,826,1046
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 21:40,28-03-26 21:54,Invalid date,826,
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 21:40,28-03-26 21:49,Invalid date,514,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 21:40,28-03-26 21:49,28-03-26 22:12,514,1358
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 20:55,28-03-26 21:48,28-03-26 21:48,3139,0
+AMNDA-S1: Multiple Failed Logins,Medium,Closed,28-03-26 21:30,28-03-26 21:41,28-03-26 21:41,717,0
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:26,Invalid date,1862,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 20:55,28-03-26 21:26,28-03-26 21:33,1862,387
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:21,Invalid date,1575,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 20:55,28-03-26 21:21,28-03-26 21:30,1575,489
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:16,Invalid date,1265,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 21:16,28-03-26 21:16,28-03-26 21:21,0,261
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 21:11,28-03-26 21:11,28-03-26 21:21,0,561
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:11,Invalid date,966,
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:06,Invalid date,667,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 20:55,28-03-26 21:06,28-03-26 21:21,667,860
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:06,Invalid date,667,
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:55,28-03-26 21:01,Invalid date,376,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 20:55,28-03-26 21:01,28-03-26 21:21,376,1150
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 20:17,28-03-26 20:24,Invalid date,374,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 20:17,28-03-26 20:24,28-03-26 21:00,374,2161
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 19:48,28-03-26 20:23,28-03-26 20:57,2091,2022
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 19:48,28-03-26 20:23,Invalid date,2091,
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 19:48,28-03-26 20:05,Invalid date,1034,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 19:48,28-03-26 20:05,28-03-26 20:21,1034,921
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 19:48,28-03-26 19:56,28-03-26 19:56,455,0
+AMNDA-S1: Multiple Failed Logins,Medium,New,28-03-26 19:30,28-03-26 19:51,Invalid date,1315,
+AMNDA-S1: Multiple Failed Logins,Medium,Closed,28-03-26 19:30,28-03-26 19:41,28-03-26 19:51,718,555
+AMNDA-S1: Multiple Failed Logins,Medium,New,28-03-26 19:30,28-03-26 19:41,Invalid date,718,
+AMNDA-S1: Multiple Failed Logins,Medium,New,28-03-26 18:30,28-03-26 19:11,Invalid date,2504,
+AMNDA-S1: Multiple Failed Logins,Medium,Closed,28-03-26 18:30,28-03-26 19:11,28-03-26 19:42,2504,1822
+AMNDA-S1: Multiple Failed Logins,Medium,New,28-03-26 18:30,28-03-26 19:02,Invalid date,1926,
+AMNDA-S1: Multiple Failed Logins,Medium,Closed,28-03-26 18:30,28-03-26 19:02,28-03-26 19:42,1926,2400
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 15:53,28-03-26 16:47,Invalid date,3277,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 15:53,28-03-26 16:47,28-03-26 20:03,3277,11718
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 15:06,28-03-26 15:47,Invalid date,2480,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 15:06,28-03-26 15:47,28-03-26 20:03,2480,15337
+AMNDA-S2: Privilege Escalation,High,New,28-03-26 14:27,28-03-26 14:47,Invalid date,1223,
+AMNDA-S2: Privilege Escalation,High,Closed,28-03-26 14:27,28-03-26 14:47,28-03-26 20:03,1223,18923

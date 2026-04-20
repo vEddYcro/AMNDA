@@ -1,0 +1,77 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "contentVersion": "1.0.0.0",
+        "triggers": {
+            "Microsoft_Sentinel_incident": {
+                "type": "ApiConnectionWebhook",
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                        }
+                    },
+                    "body": {
+                        "callback_url": "@{listCallbackUrl()}"
+                    },
+                    "path": "/incident-creation"
+                }
+            }
+        },
+        "actions": {
+            "HTTP": {
+                "runAfter": {},
+                "type": "Http",
+                "inputs": {
+                    "uri": "https://management.azure.com/subscriptions/a4d42341-2512-4ce7-a27b-5e76b7ed10b0/resourceGroups/AMNDAVerif/providers/Microsoft.Network/networkSecurityGroups/NSG-App/securityRules/DenyAllInbound-AMNDA?api-version=2023-05-01",
+                    "method": "PUT",
+                    "body": {
+                        "properties": {
+                            "priority": 100,
+                            "direction": "Inbound",
+                            "access": "Deny",
+                            "protocol": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*"
+                        }
+                    },
+                    "authentication": {
+                        "type": "ManagedServiceIdentity",
+                        "audience": "https://management.azure.com"
+                    }
+                },
+                "runtimeConfiguration": {
+                    "contentTransfer": {
+                        "transferMode": "Chunked"
+                    }
+                }
+            }
+        },
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "type": "Object",
+                "defaultValue": {}
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "type": "Object",
+            "value": {
+                "azuresentinel": {
+                    "id": "/subscriptions/a4d42341-2512-4ce7-a27b-5e76b7ed10b0/providers/Microsoft.Web/locations/eastus/managedApis/azuresentinel",
+                    "connectionId": "/subscriptions/a4d42341-2512-4ce7-a27b-5e76b7ed10b0/resourceGroups/AMNDAVerif/providers/Microsoft.Web/connections/azuresentinel-PLB-S3-SegmentationTighten",
+                    "connectionName": "azuresentinel-PLB-S3-SegmentationTighten",
+                    "connectionProperties": {
+                        "authentication": {
+                            "type": "ManagedServiceIdentity"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

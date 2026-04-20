@@ -1,0 +1,89 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "contentVersion": "1.0.0.0",
+        "triggers": {
+            "Microsoft_Sentinel_incident": {
+                "type": "ApiConnectionWebhook",
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                        }
+                    },
+                    "body": {
+                        "callback_url": "@{listCallbackUrl()}"
+                    },
+                    "path": "/incident-creation"
+                }
+            }
+        },
+        "actions": {
+            "Entities_-_Get_Hosts": {
+                "runAfter": {},
+                "type": "ApiConnection",
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['azuresentinel']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "body": "@triggerBody()?['object']?['properties']?['relatedEntities']",
+                    "path": "/entities/host"
+                }
+            },
+            "For_each_host": {
+                "foreach": "@body('Entities_-_Get_Hosts')?['Hosts']",
+                "actions": {
+                    "Isolate_Machine": {
+                        "runAfter": {},
+                        "type": "Http",
+                        "inputs": {
+                            "method": "POST",
+                            "uri": "https://api.securitycenter.microsoft.com/api/machines/@{encodeURIComponent(items('For_each_host')?['additionalData']?['MdatpDeviceId'])}/isolate",
+                            "body": {
+                                "Comment": "Isolated by AMNDA PLB-S4 playbook",
+                                "IsolationType": "Full"
+                            },
+                            "authentication": {
+                                "type": "ManagedServiceIdentity",
+                                "audience": "https://api.securitycenter.microsoft.com"
+                            }
+                        }
+                    }
+                },
+                "runAfter": {
+                    "Entities_-_Get_Hosts": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Foreach"
+            }
+        },
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "type": "Object",
+                "defaultValue": {}
+            }
+        }
+    },
+    "parameters": {
+        "$connections": {
+            "type": "Object",
+            "value": {
+                "azuresentinel": {
+                    "id": "/subscriptions/a4d42341-2512-4ce7-a27b-5e76b7ed10b0/providers/Microsoft.Web/locations/eastus/managedApis/azuresentinel",
+                    "connectionId": "/subscriptions/a4d42341-2512-4ce7-a27b-5e76b7ed10b0/resourceGroups/AMNDAVerif/providers/Microsoft.Web/connections/azuresentinel-PLB-S4-HostIsolation",
+                    "connectionName": "azuresentinel-PLB-S4-HostIsolation",
+                    "connectionProperties": {
+                        "authentication": {
+                            "type": "ManagedServiceIdentity"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
